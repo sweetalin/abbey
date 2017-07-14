@@ -1,0 +1,38 @@
+<composite
+        xmlns="http://docs.oasis-open.org/ns/opencsa/sca/200912"
+        xmlns:tuscany="http://tuscany.apache.org/xmlns/sca/1.0"
+        targetNamespace="http://com.jnshu.service"
+        name="Calculator">
+    <!--  xmlns="http://docs.oasis-open.org/ns/opencsa/sca/200912"-->
+        <!--xmlns="http://www.osoa.org/xmlns/sca/1.0"-->
+
+    <service name="Calculator" promote="Calculator">
+        <interface.java interface="com.jnshu.service.ICalculator"/>
+
+        <!--<tuscany:binding.rmi port="8099" host="localhost" serviceName="Calculator" />-->
+        <binding.ws uri="http://127.0.0.1:8099/Calculator"/>
+    </service>
+
+    <component name="Calculator">
+        <implementation.java class="com.jnshu.service.Calculator" />
+
+
+        <reference name="add" target="AddComponent"/>
+        <reference name="subtract" target="SubtractComponent"/>
+        <reference name="multiply" target="MultiplyComponent"/>
+        <reference name="divide" target="DivideComponent"/>
+    </component>
+    <component name="AddComponent">
+        <implementation.java class="com.jnshu.service.Add" />
+    </component>
+    <component name="SubtractComponent">
+        <implementation.java class="com.jnshu.service.Subtract" />
+    </component>
+    <component name="MultiplyComponent">
+        <implementation.java class="com.jnshu.service.Multiply" />
+    </component>
+    <component name="DivideComponent">
+        <implementation.java class="com.jnshu.service.Divide" />
+    </component>
+
+</composite>

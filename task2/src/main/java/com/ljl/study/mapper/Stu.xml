@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+    <mapper namespace="com.ljl.study.mapper.StuMapper">
+	<insert id="add" parameterType="Stu">
+		insert into stu( name ) values (#{name})
+	</insert>
+
+	<delete id="delete" parameterType="Stu">
+		delete from stu where id= #{id}
+	</delete>
+
+	<update id="update" parameterType="Stu">
+		update stu set name=#{name} where id=#{id}
+	</update>
+	
+	<select id="get" parameterType="_int" resultType="Stu">
+		select * from stu where id= #{id}
+	</select>
+
+	<select id="list" resultType="Stu">
+		select * from stu
+	</select>     
+    </mapper>

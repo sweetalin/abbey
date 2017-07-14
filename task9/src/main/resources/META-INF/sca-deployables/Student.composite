@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<composite xmlns="http://www.osoa.org/xmlns/sca/1.0" xmlns:tuscany="http://tuscany.apache.org/xmlns/sca/1.0" name="StudentComposite"   
+    targetNamespace="http://whu.sklse.webService">  
+    <service name="StudentService" promote="StudentServiceComponent">   
+        <interface.java interface="com.test.service.IStudentService" />  
+        <binding.ws></binding.ws>           
+    </service>
+    
+    <component name="StudentServiceComponent">   
+    	<implementation.java class="com.test.serviceImpl.StudentServiceImpl"/>
+    </component>   
+
+</composite>

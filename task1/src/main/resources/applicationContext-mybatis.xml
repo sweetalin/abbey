@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans 
+    http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+    http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+
+    <!-- JDBC Data Source -->
+ <!--    注册数据源，常见的有 JDBC 或 JNDI -->
+    <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource" >
+	<property name="driverClassName" value="com.mysql.jdbc.Driver" />
+	<property name="url"
+		value="jdbc:mysql://localhost:3306/db_abbey?useUnicode=true&amp;characterEncoding=UTF-8" />
+	<property name="username" value="root" />
+	<property name="password" value="698970s" />
+    </bean>
+    
+    <!-- JNDI Data Source -->
+ <!--    <bean id="dataSource" class="org.springframework.jndi.JndiObjectFactoryBean">
+        <property name="jndiName">
+            <value>JNDI_TEST_DB</value>
+        </property>
+    </bean> -->
+    
+<!-- spring和MyBatis完美整合，不需要mybatis的配置映射文件 -->
+<!-- 注册 sqlSessionFactory -->
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+    <!-- 自动取对应包中不包括包名的简单类名作为包括包名的别名。 -->
+    	<property name="typeAliasesPackage" value="com.ljl.study.entity" />
+   <!-- sqlSessionFactory 是用来生产 sqlSession 以操作数据库的，所以，需指定 sqlSessionFactory 所引用的数据源 -->
+        <property name="dataSource" ref="dataSource" />
+   <!--    表示我们的 Mapper 文件存放的位置，当我们的 Mapper 文件跟对应的 Mapper 接口处于同一位置的时候可以不用指定该属性的值。 -->
+        <property name="mapperLocations" value="classpath:com/ljl/study/dao/StuDAO.xml"></property>
+        <!-- <property name="configLocation" value="classpath:mybatis-config.xml"></property> -->
+    </bean>
+
+<!-- DAO接口定义成bean,并且交由spring管理 -->
+    <bean id="stuDAO" class="org.mybatis.spring.mapper.MapperFactoryBean">
+        <property name="mapperInterface" value="com.ljl.study.dao.StuDAO" />
+        <property name="sqlSessionFactory" ref="sqlSessionFactory" />
+    </bean>
+
+</beans>

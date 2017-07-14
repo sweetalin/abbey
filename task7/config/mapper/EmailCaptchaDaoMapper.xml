@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="cn.hyn123.dao.EmailCaptchaDao">
+<resultMap id="EmailCaptcha" type="EmailCaptcha" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="captcha" property="captcha" jdbcType="VARCHAR" />
+    <result column="email" property="email" jdbcType="VARCHAR" />
+    <result column="createTime"  property="createTime" jdbcType="DATE" />
+  </resultMap>	
+	<!-- 保存验证码 -->
+	<insert id="saveCaptcha">
+		INSERT INTO emailcaptcha 
+		(email,captcha,createTime) 
+		VALUE 
+		(#{email},#{captcha},#{createTime})
+	</insert>
+	
+	<!-- 查找验证码 -->
+	<select id="getUserCaptcha" resultMap="EmailCaptcha" parameterType="java.lang.String">
+		SELECT * FROM emailcaptcha WHERE email = #{email}
+	</select>
+	
+	<!-- 删除用户验证码 -->
+	<delete id="deleteCaptcha">
+		DELETE FROM emailcaptcha WHERE email = #{email}
+	</delete>
+	
+</mapper>
+

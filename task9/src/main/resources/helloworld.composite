@@ -1,0 +1,8 @@
+<composite xmlns="http://docs.oasis-open.org/ns/opencsa/sca/200912"
+xmlns:tuscany="http://tuscany.apache.org/xmlns/sca/1.1"
+targetNamespace="http://sample"
+name="helloworld-contribution">
+<component name="HelloworldComponent">
+<implementation.spring location="helloworld-context.xml"/>
+</component>
+</composite>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.oeasy.dao.StudentDao">
+    <resultMap id="studentMap" type="com.oeasy.model.Student">
+        <id property="id" column="id" javaType="java.lang.Long" jdbcType="INTEGER"></id>
+        <result property="name" column="name" javaType="java.lang.String" jdbcType="VARCHAR"/>
+        <result property="avatar" column="avatar" javaType="java.lang.String" jdbcType="VARCHAR"/>
+        <result property="type" column="type" javaType="java.lang.String" jdbcType="VARCHAR"/>
+        <result property="introduction" column="introduction" javaType="java.lang.String" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <select id="select" resultMap="studentMap" parameterType="long">
+        SELECT * FROM showtime_copy WHERE id=#{id}
+    </select>
+    <insert id="insert">
+    	INSERT INTO showtime_copy(name,avatar,type,introduction) VALUES (#{name},#{avatar},#{type},#{introduction})
+    </insert>
+    
+    <select id="delete" parameterType="long">
+    	DELETE FROM showtime_copy WHERE id=#{id}
+    </select>
+</mapper>

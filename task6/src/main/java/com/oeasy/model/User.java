@@ -1,0 +1,62 @@
+package com.oeasy.model;
+
+/**
+ * 
+ * @author alin
+ *
+ * 2017年6月13日
+ */
+public class User implements java.io.Serializable{
+	static final long serialVersionUID = 42L;
+    private Long id;
+    private String username;
+    private String password;
+
+    public User() {
+    }
+
+    public User(Long id, String username, String password) {
+        this.id = id;
+        this.username = username;
+        this.password = password;
+    }
+
+    public User(String name, String md5) {
+		// TODO Auto-generated constructor stub
+    	this.username = name;
+    	this.password = md5;
+	}
+
+	public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                '}';
+    }
+}

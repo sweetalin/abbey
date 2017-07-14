@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.oeasy.dao.StudentDao">
+    <resultMap id="studentMap" type="Student">
+        <id property="id" column="id" javaType="java.lang.Long" jdbcType="INTEGER"></id>
+        <result property="name" column="name" javaType="java.lang.String" jdbcType="VARCHAR"/>
+        <result property="avatar" column="avatar" javaType="java.lang.String" jdbcType="VARCHAR"/>
+        <result property="type" column="type" javaType="java.lang.String" jdbcType="VARCHAR"/>
+        <result property="introduction" column="introduction" javaType="java.lang.String" jdbcType="VARCHAR"/>
+        <result property="schoolDay" column="school_day" javaType="java.lang.Long" jdbcType="BIGINT"/>
+    </resultMap>
+
+    <select id="select" resultMap="studentMap">
+        SELECT * FROM showtime
+    </select>
+</mapper>
